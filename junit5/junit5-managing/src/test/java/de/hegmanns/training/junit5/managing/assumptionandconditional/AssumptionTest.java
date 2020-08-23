@@ -21,15 +21,25 @@ public class AssumptionTest {
     }
 
     @Test
+    @Disabled
     public void disabledByAssumingWithImportantTest() {
         int anyFirst = 1;
         int anySecond = 2;
         Integer sum = add(anyFirst, anySecond);
         Assumptions.assumeTrue(sum!=null);
-        Assertions.assertEquals(3, sum);
+        Assertions.assertEquals(5, sum);
     }
 
-    // only places for training here
+    @Test
+    @Disabled
+    public void assumingAndAssertionWithSupplier() {
+        int anyFirst = 1;
+        int anySecond = 2;
+        Integer sum = add(anyFirst, anySecond);
+        Assumptions.assumingThat(sum!=null, () -> {Assertions.assertEquals(5, sum);});
+    }
+
+    // only placed for training here
     private Integer add(Integer firstAddend, Integer secondAddend) {
         return 3;
     }
