@@ -7,3 +7,7 @@
 /junit5/junit5-tag/target/
 /junit5/junit5-tdd/target/
 /junit5/junit5-version57/target/
+*.project
+**/.settings/*
+**/.classpath
+**/*.class
