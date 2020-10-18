@@ -3,6 +3,7 @@ package de.hegmanns.training.junit5.managing.assumptionandconditional;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 public class ConditionTest {
@@ -34,13 +35,47 @@ public class ConditionTest {
     @EnabledIfSystemProperty(named = "os.version", matches = ".*10.*")
     void runOnlyOnWindows10() {
         System.out.println("Run this only on WINDOWS OS 10 version");
+
+        System.getProperties().entrySet().stream().forEach((e) -> System.out.println(e.getKey() + " : " + e.getValue()));
     }
 
     @Test
-
-    public void foo() {
-
+    @EnabledIfSystemProperty(named="user.language", matches = "de")
+    void runOnlyForGermanLanguages() {
+        System.out.println("Nur in deutscher Sprache");
     }
+
+    @Test
+    @EnabledIfSystemProperty(named="user.language", matches = "!(de)")
+    void runNotForGermanLanguages() {
+        System.out.println("Every language but german");
+    }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "env", matches = "prelive")
+    void runForPrelive() {
+        System.out.println("Running vor Pre-Live");
+    }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "env", matches = "hudson")
+    void runForBuildserver() {
+        System.out.println("Running vor Build-Server");
+    }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "env", matches = "DEV")
+    void runForDevelopment() {
+        System.out.println("Running vor Development");
+    }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "env", matches = "test")
+    void runForTest() {
+        System.out.println("Running vor test");
+    }
+
+
 
 //    @Test
 //    @EnabledIf("2 * 3 == 6")

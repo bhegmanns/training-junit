@@ -15,9 +15,8 @@
         <junit.platform.version>1.3.1</junit.platform.version>
         <surefire.version>2.22.0</surefire.version>
 
-        <jupiter.mockito.extension>1.0.2</jupiter.mockito.extension>
-        <hamcrest.version>1.3</hamcrest.version>
-        <mockito.version>1.10.19</mockito.version>
+        <hamcrest.version>2.2</hamcrest.version>
+        <mockito.version>3.5.13</mockito.version>
     </properties>
 
     <build>
@@ -79,20 +78,20 @@
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
+            <artifactId>hamcrest</artifactId>
             <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
+            <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>name.falgout.jeffrey.testing.junit5</groupId>
-            <artifactId>mockito-extension</artifactId>
-            <version>${jupiter.mockito.extension}</version>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

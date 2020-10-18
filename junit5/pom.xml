@@ -18,6 +18,8 @@
         <module>junit5-version57</module>
         <module>junit5-tag</module>
         <module>junit5-tdd</module>
+        <module>junit5-breakpuzzles</module>
+        <module>junit5-mock</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -38,11 +40,9 @@
         <surefire.version>2.22.0</surefire.version>
 
         <!-- Additional Frameworks -->
-        <hamcrest.version>1.3</hamcrest.version>
-        <assertj.version>3.11.1</assertj.version> <!-- use 2.9.1 for Java 7 projects -->
-        <mockito.version>1.10.19</mockito.version>
-        <jupiter.mockito.extension>1.0.2</jupiter.mockito.extension>
-
+        <hamcrest.version>2.2</hamcrest.version> <!-- 1.3 -->
+        <assertj.version>3.17.1</assertj.version> <!-- 3.11.1 use 2.9.1 for Java 7 projects -->
+        <mockito.version>3.5.13</mockito.version><!-- 1.10.19 -->
         <commons-io.version>2.6</commons-io.version>
 
     </properties>
@@ -74,9 +74,15 @@
                 <scope>test</scope>
             </dependency>
 
-            <dependency>
+            <!--dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-all</artifactId>
+                <version>1.3</version>
+                <scope>test</scope>
+            </dependency-->
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest</artifactId>
                 <version>${hamcrest.version}</version>
                 <scope>test</scope>
             </dependency>
@@ -88,14 +94,14 @@
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
-                <artifactId>mockito-all</artifactId>
+                <artifactId>mockito-core</artifactId>
                 <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>name.falgout.jeffrey.testing.junit5</groupId>
-                <artifactId>mockito-extension</artifactId>
-                <version>${jupiter.mockito.extension}</version>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>

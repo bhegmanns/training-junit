@@ -1,4 +1,4 @@
-package de.hegmanns.training.junit5.practice.task06;
+package de.hegmanns.training.junit5.practice.task07;
 
 import java.lang.annotation.*;
 

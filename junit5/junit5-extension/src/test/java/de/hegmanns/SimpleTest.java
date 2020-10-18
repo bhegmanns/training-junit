@@ -9,12 +9,15 @@ public class SimpleTest {
 
     @Test
     public void testTheBest(TestReporter testReporter) {
+        testReporter.publishEntry("final");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        testReporter.publishEntry("that's it");
+
+        testReporter.publishEntry("final");
+        testReporter.publishEntry("name", "Bernd");
     }
 
     @Test

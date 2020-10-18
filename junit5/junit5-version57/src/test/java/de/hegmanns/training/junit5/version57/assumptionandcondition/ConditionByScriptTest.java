@@ -48,7 +48,6 @@ public class ConditionByScriptTest {
 
     }
 
-
     public boolean wouldProceed() {
 
         return true;
