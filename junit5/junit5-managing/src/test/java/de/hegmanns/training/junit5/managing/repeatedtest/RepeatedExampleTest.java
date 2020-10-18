@@ -1,7 +1,5 @@
 package de.hegmanns.training.junit5.managing.repeatedtest;
 
-import com.sun.corba.se.impl.orbutil.RepIdDelegator;
-import com.sun.javaws.progress.PreloaderPostEventListener;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
