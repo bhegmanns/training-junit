@@ -3,6 +3,8 @@ package de.hegmanns.training.junit5.practice.task03;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+
 public class LongTimeServiceTest {
 
     @Test
@@ -11,12 +13,13 @@ public class LongTimeServiceTest {
         String otherAnyNumberString = "1000";
 
         LongTimeService longTimeService = new LongTimeService();
-        long startTime = System.currentTimeMillis();
-        int sum = longTimeService.add(anyNumberString, otherAnyNumberString);
-        long finalTime = System.currentTimeMillis();
-        long timeForService = finalTime - startTime;
-
-        Assertions.assertTrue(timeForService <= 1000, "time for service : " + timeForService + "ms");
+        Assertions.assertTimeout(Duration.ofMillis(1000), () -> longTimeService.add(anyNumberString, otherAnyNumberString));
+//        long startTime = System.currentTimeMillis();
+//        int sum = longTimeService.add(anyNumberString, otherAnyNumberString);
+//        long finalTime = System.currentTimeMillis();
+//        long timeForService = finalTime - startTime;
+//
+//        Assertions.assertTrue(timeForService <= 1000, "time for service : " + timeForService + "ms");
     }
 
     @Test
@@ -30,7 +33,8 @@ public class LongTimeServiceTest {
         long finalTime = System.currentTimeMillis();
         long timeForService = finalTime - startTime;
 
-        Assertions.assertTrue(timeForService >= 600 && timeForService <= 1000, "time for service : " + timeForService + "ms");
+//        Assertions.assertTrue(timeForService >= 600 && timeForService <= 1000, "time for service : " + timeForService + "ms");
+        Assertions.assertTrue(timeForService >= 600 , "time for service : " + timeForService + "ms");
     }
 
     @Test

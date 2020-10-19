@@ -42,14 +42,14 @@ public class WithAssertionsTest {
 
         Assertions.assertNull(a);
         Assertions.assertNotNull(b, "not null expected");
-        Assertions.assertNotNull(b, () -> "not null expected");
+        Assertions.assertNull(b, () -> "not null expected");
     }
 
     @Test
     public void expectedIterable() {
         List<String> lines = Stream.of("hello", "great", "world").collect(Collectors.toList());
 
-        Assertions.assertIterableEquals(Arrays.asList("hello", "great", "world"), lines);
+        Assertions.assertIterableEquals(Arrays.asList("hello", "great"/*, "world"*/), lines);
     }
 
 

@@ -16,7 +16,8 @@ public class NumberCheckTestCaseProvider implements TestTemplateInvocationContex
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext extensionContext) {
         return Stream.of(
                 create(true, 5, true),
-                create(true, 120, false)
+                create(true, 120, false),
+                create(false, 5, false)
         );
     }
 

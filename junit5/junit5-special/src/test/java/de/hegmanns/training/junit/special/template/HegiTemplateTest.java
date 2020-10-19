@@ -20,6 +20,7 @@ public class HegiTemplateTest {
     @TestTemplate
     @ExtendWith(HegiTestProvider.class)
     void theTestForTemplate(int number) {
+
         Assertions.assertTrue(numberCheck.isPreferred(number));
     }
 
@@ -45,7 +46,7 @@ public class HegiTemplateTest {
             return new TestTemplateInvocationContext() {
                 @Override
                 public String getDisplayName(int invocationIndex) {
-                    return "" + invocationIndex + " should be preferred when numberCheck preferred odd numbers";
+                    return "" + invocationIndex + ":" + number + " should be preferred when numberCheck preferred odd numbers";
                 }
 
                 @Override

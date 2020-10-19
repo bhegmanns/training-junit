@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 public class NotForEveryTimeTest {
 
     @Test
-//    @DisableOnTime
+    @DisableOnTime
     public void thisTestShouldBeDisabledEveryTime() {
         System.out.println("NotForEveryTimeTest");
     }
 
     @Test
-//    @DisableOnTime(from = "10:00", until = "14:00")
+    @DisableOnTime(from = "00:00", until = "14:00")
     public void thisTestShouldBeDisabledFrom10To14() {
         System.out.println("should be disabled from 10 to 14");
     }
 
     @Test
-//    @DisableOnTime(from = "12:39", until = "12:45") // change it
+    @DisableOnTime(from = "12:39", until = "12:45") // change it
     public void defineDisabledOrActivating_consultYourClock() {
         System.out.println("should be disabled from 12:39 to 12:45");
     }
