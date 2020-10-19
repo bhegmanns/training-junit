@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 public class StringCalculatorTest {
 
-    @Test
-    public void nullAsInputResultsIn0() {
-        int result = StringCalculator.calculate(null);
-        Assertions.assertEquals(0, result);
-    }
+//    @Test
+//    public void nullAsInputResultsIn0() {
+//        int result = StringCalculator.calculate(null);
+//        Assertions.assertEquals(0, result);
+//    }
 }
