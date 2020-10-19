@@ -1,11 +1,10 @@
 package de.hegmanns.training.junit5.practice.task01;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks for {@link CalculatorForDivide#isDividableIntoEventParts(int)}.
+ * Checks for {@link CalculatorForDivide#isDividableIntoEvenParts(int)}.
  *
  * <p>
  *     Possible inputs for test:<br/>
@@ -28,7 +27,7 @@ public class EvenDividableTest {
         // arrange
 
         // act
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(8);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(8);
 
         // assert
         Assertions.assertEquals(true, isEvenDividable);
@@ -39,7 +38,7 @@ public class EvenDividableTest {
         // arrange
 
         // act
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(-1);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(-1);
 
         // assert
         Assertions.assertEquals(false, isEvenDividable);
@@ -50,7 +49,7 @@ public class EvenDividableTest {
         // arrange
 
         // act
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(Integer.MAX_VALUE);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(Integer.MAX_VALUE);
 
         // assert
         Assertions.assertEquals(false, isEvenDividable);
@@ -61,7 +60,7 @@ public class EvenDividableTest {
         // arrange
 
         // act
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(Integer.MAX_VALUE-1);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(Integer.MAX_VALUE-1);
 
         // assert
         Assertions.assertEquals(true, isEvenDividable);
@@ -72,21 +71,23 @@ public class EvenDividableTest {
         // arrange
 
         // act
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(1);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(1);
 
         // assert
         Assertions.assertEquals(false, isEvenDividable);
     }
 
-    @Test @Disabled
-    public void amountOf2IsEvenDividable() {
+    @Test
+    public void amountOf2IsOddDividable() {
         // arrange
+        boolean expectedDividable = false;
+        int countOfElements = 2;
 
         // act
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(2);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(countOfElements);
 
         // assert
-        Assertions.assertEquals(false, isEvenDividable);
+        Assertions.assertEquals(expectedDividable, isEvenDividable);
     }
 
     @Test
@@ -94,7 +95,7 @@ public class EvenDividableTest {
         // arrange
 
         // act
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(2);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(10);
 
         // assert
         Assertions.assertEquals(true, isEvenDividable);
