@@ -17,6 +17,6 @@ public class CalculatorForDivide {
      * @return <i>true</i>, if the amount can be split into even parts, else <i>false</i>
      */
     public static boolean isDividableIntoEventParts(int amount) {
-        return amount % 2 == 0;
+        return amount>2 && amount % 2 == 0;
     }
 }
