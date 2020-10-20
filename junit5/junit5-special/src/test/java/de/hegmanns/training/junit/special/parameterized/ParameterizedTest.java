@@ -12,7 +12,9 @@ public class ParameterizedTest {
 
     @DisplayName("lessTest")
     @org.junit.jupiter.params.ParameterizedTest(name = "{arguments} should be less than 100")
+//    @NullSource
     @ValueSource(ints = {1, 2, 56, 99})
+//    @ValueSource(doubles = {})
     public void withSimpleList(int value) {
         MatcherAssert.assertThat(value, Matchers.lessThan(100));
     }

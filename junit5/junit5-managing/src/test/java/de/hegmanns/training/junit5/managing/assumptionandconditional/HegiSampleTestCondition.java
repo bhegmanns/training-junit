@@ -17,9 +17,22 @@ public class HegiSampleTestCondition implements ExecutionCondition {
             HegiCondition annotation = element.get().getAnnotation(HegiCondition.class);
             if (annotation != null) {
                 String info = annotation.info();
+                if (annotation.weather().equals("sunny")) {
+                    if (isSunny()) {
+                        return ConditionEvaluationResult.enabled("ok, is sunny");
+                    }else{
+                        return ConditionEvaluationResult.disabled("uuuh, is rainy");
+                    }
+                }
                 return ConditionEvaluationResult.disabled("don't have time for proceeding this boring test: " + info);
             }
         }
         return ConditionEvaluationResult.enabled("..");
+    }
+
+    private boolean isSunny() {
+        // request to weather station
+
+        return true; // false
     }
 }

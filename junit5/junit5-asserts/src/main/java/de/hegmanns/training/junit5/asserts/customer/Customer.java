@@ -34,7 +34,7 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public LocalDate getDayOfBirth() {
+    public LocalDate getBirthDay() {
         return dayOfBirth;
     }
 

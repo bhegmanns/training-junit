@@ -13,7 +13,7 @@ public class CustomerFeatureMatcher {
         return new FeatureMatcher<Customer, Integer>(intMatcher, "age of customer", "age") {
             @Override
             protected Integer featureValueOf(Customer actual) {
-                LocalDate dayOfBirth = actual.getDayOfBirth();
+                LocalDate dayOfBirth = actual.getBirthDay();
                 LocalDate today = LocalDate.now();
 
                 Period until = dayOfBirth.until(today);
