@@ -20,6 +20,9 @@
         <module>junit5-tdd</module>
         <module>junit5-breakpuzzles</module>
         <module>junit5-mock</module>
+        <module>junit5-cucumber</module>
+        <module>junit5-spring</module>
+        <module>junit5-docker</module>
     </modules>
     <packaging>pom</packaging>
 
