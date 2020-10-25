@@ -1,6 +1,6 @@
 package de.hegmanns.training.junit.special.mockito;
 
-import de.hegmanns.training.junit5.special.mock.GreetService;
+import de.hegmanns.training.junit5.special.mock.testable.GreetService;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;

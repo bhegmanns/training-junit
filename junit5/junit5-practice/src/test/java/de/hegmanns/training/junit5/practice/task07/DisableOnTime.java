@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@ExtendWith(DisableOnTimeCondition.class)
+
 public @interface DisableOnTime {
     public String from() default "00:00";
 

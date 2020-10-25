@@ -18,11 +18,13 @@ public class EvenDividableTest {
     @Test
     public void amountOf8IsEvenDividable() {
         // arrange
+        boolean expectedDividable = true;
+        int countOfElements = 8;
 
         // act
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(8);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(countOfElements);
 
         // assert
-        Assertions.assertEquals(true, isEvenDividable);
+        Assertions.assertEquals(expectedDividable, isEvenDividable);
     }
 }
