@@ -16,7 +16,7 @@ public class CalculatorForDivide {
      * @param amount the amount to be split
      * @return <i>true</i>, if the amount can be split into even parts, else <i>false</i>
      */
-    public static boolean isDividableIntoEventParts(int amount) {
+    public static boolean isDividableIntoEvenParts(int amount) {
         return amount % 2 == 0;
     }
 }

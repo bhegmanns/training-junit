@@ -2,8 +2,6 @@ package de.hegmanns.training.junit5.practice.task01;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 public class EvenDividableManyTest {
 
@@ -11,7 +9,7 @@ public class EvenDividableManyTest {
     public void amountOf0IsNotEvenDividable() {
         int amount = 0;
 
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(amount);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(amount);
 
         Assertions.assertEquals(false, isEvenDividable);
     }
@@ -20,7 +18,7 @@ public class EvenDividableManyTest {
     public void amountOfNeg1IsNotEvenDividable() {
         int amount = -1;
 
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(amount);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(amount);
 
         Assertions.assertEquals(false, isEvenDividable);
     }
@@ -29,7 +27,7 @@ public class EvenDividableManyTest {
     public void amount1fNeg1IsNotEvenDividable() {
         int amount = 1;
 
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(amount);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(amount);
 
         Assertions.assertEquals(false, isEvenDividable);
     }
@@ -38,7 +36,7 @@ public class EvenDividableManyTest {
     public void amount2fNeg1IsNotEvenDividable() {
         int amount = 2;
 
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(amount);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(amount);
 
         Assertions.assertEquals(false, isEvenDividable);
     }
@@ -47,7 +45,7 @@ public class EvenDividableManyTest {
     public void amountOfMaxInIsNotEvenDividable() {
         int amount = Integer.MAX_VALUE;
 
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(amount);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(amount);
 
         Assertions.assertEquals(false, isEvenDividable);
     }
@@ -56,7 +54,7 @@ public class EvenDividableManyTest {
     public void amountOfOneBeforeMaxInIsNotEvenDividable() {
         int amount = Integer.MAX_VALUE-1;
 
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(amount);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(amount);
 
         Assertions.assertEquals(true, isEvenDividable);
     }
@@ -65,7 +63,7 @@ public class EvenDividableManyTest {
     public void amountOf8IsEvenDividable() {
         int amount = 8;
 
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(amount);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(amount);
 
         Assertions.assertEquals(true, isEvenDividable);
     }
@@ -74,7 +72,7 @@ public class EvenDividableManyTest {
     public void amountOf11IsNotEvenDividable() {
         int amount = 11;
 
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(amount);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(amount);
 
         Assertions.assertEquals(false, isEvenDividable);
     }

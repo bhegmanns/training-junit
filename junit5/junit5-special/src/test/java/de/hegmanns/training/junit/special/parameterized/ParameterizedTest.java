@@ -45,6 +45,7 @@ public class ParameterizedTest {
     private static class MyArgumentProvider implements ArgumentsProvider {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+//            Arguments.of("a", "b");
             return Stream.of("hello", "world").map(Arguments::of);
         }
     }

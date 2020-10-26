@@ -45,8 +45,8 @@ public class ParameterAsCsvSourceTest {
 
     @DisplayName("handleWithAlternativeNull")
     @ParameterizedTest
-    @CsvSource(value = {"a", "b", "NULL", "c", "d", "e"}, nullValues = "NULL")
     @EmptySource
+    @CsvSource(value = {"a", "b", "NULL", "c", "d", "e"}, nullValues = "NULL")
     public void handleWithAlternativeNull(String string) {
         System.out.println("value = '" + string + "'");
     }
@@ -57,6 +57,9 @@ public class ParameterAsCsvSourceTest {
     public void allDivisorsWithConverter(int number, @ConvertWith(StringToIntArrayConverter.class) int[] allPossibleDivisors) {
         System.out.println("" + number + " have " + allPossibleDivisors.length + " divisors");
     }
+
+
+
 
     public static class StringToIntArrayConverter extends TypedArgumentConverter<String, int[]> {
 

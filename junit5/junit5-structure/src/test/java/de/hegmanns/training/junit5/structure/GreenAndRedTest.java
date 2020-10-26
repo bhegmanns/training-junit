@@ -18,20 +18,20 @@ public class GreenAndRedTest {
         // Junit only checks running without fail and error
     }
 
-//    @Test
-//    public void thisMethodWillProceedAndDisplayedAsFailureByAssertionError() {
-//        throw new AssertionError("this is an example failed test-method");
-//    }
-//
-//    @Test
-//    public void thisMethodWillProceedAndDisplayedAsFailureByAssertion() {
-//        Assertions.assertEquals(1, 2, "this is an example failed test-method");
-//    }
-//
-//    @Test
-//    public void thisMethodWillProceedAndDisplayedAsErrorByThrowingException() {
-//        throw new RuntimeException("a Runtime-Exception");
-//    }
+    @Test
+    public void thisMethodWillProceedAndDisplayedAsFailureByAssertionError() {
+        throw new AssertionError("this is an example failed test-method");
+    }
+
+    @Test
+    public void thisMethodWillProceedAndDisplayedAsFailureByAssertion() {
+        Assertions.assertEquals(1, 2, "this is an example failed test-method");
+    }
+
+    @Test
+    public void thisMethodWillProceedAndDisplayedAsErrorByThrowingException() {
+        throw new RuntimeException("a Runtime-Exception");
+    }
 
     @Test
     public void methodWithThrowsWithoutThrowing() throws IOException {
