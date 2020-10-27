@@ -25,7 +25,7 @@
         <module>junit5-docker</module>
         <module>junit5-parameter</module>
         <module>junit5-template</module>
-        <module>junit5-practicesolutions</module>
+        <!--module>junit5-practicesolutions</module-->
     </modules>
     <packaging>pom</packaging>
 
