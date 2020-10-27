@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks for {@link CalculatorForDivide#isDividableIntoEventParts(int)}.
+ * Checks for {@link CalculatorForDivide#isDividableIntoEvenParts(int)}.
  *
  * <p>
  *     Possible inputs for test:<br/>
@@ -18,11 +18,13 @@ public class EvenDividableTest {
     @Test
     public void amountOf8IsEvenDividable() {
         // arrange
+        boolean expectedDividable = true;
+        int countOfElements = 8;
 
         // act
-        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEventParts(8);
+        boolean isEvenDividable = CalculatorForDivide.isDividableIntoEvenParts(countOfElements);
 
         // assert
-        Assertions.assertEquals(true, isEvenDividable);
+        Assertions.assertEquals(expectedDividable, isEvenDividable);
     }
 }

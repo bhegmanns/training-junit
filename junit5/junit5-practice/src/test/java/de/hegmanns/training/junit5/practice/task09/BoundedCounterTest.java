@@ -9,7 +9,7 @@ public class BoundedCounterTest {
     @Test
     public void boundedCounterDoesntIncrementAboveMaximum() {
         int initialValue = 10;
-        BoundedCounter counter = new BoundedCounter(10, 0, 20);
+        BoundedCounter counter = new BoundedCounter(initialValue, 0, 20);
 
         for (int i = 0; i < 100; i++) {
             counter.increment();

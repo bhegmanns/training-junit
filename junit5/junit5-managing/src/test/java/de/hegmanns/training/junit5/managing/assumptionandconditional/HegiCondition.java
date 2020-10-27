@@ -11,5 +11,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(HegiSampleTestCondition.class)
 public @interface HegiCondition {
+    String weather() default "sunny";
     String info() default "";
 }

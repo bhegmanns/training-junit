@@ -80,6 +80,7 @@ public class AggregatorTest {
 
     static class OrderAggregator implements ArgumentsAggregator {
 
+
         @Override
         public Map<Order, Supplement> aggregateArguments(ArgumentsAccessor argumentsAccessor, ParameterContext parameterContext) throws ArgumentsAggregationException {
             String xetraType = argumentsAccessor.getString(0);

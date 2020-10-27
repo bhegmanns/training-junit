@@ -8,6 +8,7 @@ import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 public class ConditionTest {
 
+
     @Disabled
     @Test
     void printSystemProperties() {

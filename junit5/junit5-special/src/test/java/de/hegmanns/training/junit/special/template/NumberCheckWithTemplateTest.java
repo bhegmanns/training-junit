@@ -23,4 +23,12 @@ public class NumberCheckWithTemplateTest {
 
         MatcherAssert.assertThat(numberCheck.isPreferred(numberCheckTestCase.getNumber()), Matchers.is(numberCheckTestCase.isPreferred()));
     }
+    
+    @TestTemplate
+    @ExtendWith(NumberCheckTestCaseProvider.class)
+    public void checkPreferredWithStringParam(String numberAsString) {
+        numberCheck.setOddAsPreferred(true);
+
+        MatcherAssert.assertThat(numberCheck.isPreferred(Integer.parseInt(numberAsString)), Matchers.is(true));
+    }
 }

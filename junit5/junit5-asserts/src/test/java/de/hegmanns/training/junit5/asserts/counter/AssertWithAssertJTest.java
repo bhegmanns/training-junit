@@ -44,7 +44,8 @@ public class AssertWithAssertJTest extends CommonAssertTest{
     public void boundedCounterComparingMinAndMax() {
         org.assertj.core.api.Assertions.assertThat(boundedCounter)
                 .hasFieldOrPropertyWithValue("minimalValue", 0)
-                .hasFieldOrPropertyWithValue("maximumValue", 10);
+                .hasFieldOrPropertyWithValue("maximumValue", 10)
+                .isNotNull();
     }
 
 }

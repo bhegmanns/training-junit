@@ -20,6 +20,12 @@
         <module>junit5-tdd</module>
         <module>junit5-breakpuzzles</module>
         <module>junit5-mock</module>
+        <module>junit5-cucumber</module>
+        <module>junit5-spring</module>
+        <module>junit5-docker</module>
+        <module>junit5-parameter</module>
+        <module>junit5-template</module>
+        <!--module>junit5-practicesolutions</module-->
     </modules>
     <packaging>pom</packaging>
 
@@ -32,7 +38,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
 
         <!-- JUnit-Version -->
-        <junit.jupiter.version>5.6.2</junit.jupiter.version>
+        <junit.jupiter.version>5.7.0</junit.jupiter.version><!-- 5.6.2 -->
         <junit.platform.version>1.6.2</junit.platform.version>
 
 

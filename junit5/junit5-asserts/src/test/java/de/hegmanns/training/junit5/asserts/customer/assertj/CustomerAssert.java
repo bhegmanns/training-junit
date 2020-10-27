@@ -40,7 +40,7 @@ public class CustomerAssert extends AbstractAssert<CustomerAssert, Customer> {
     public CustomerAssert hasAge(int years) {
         isNotNull();
 
-        LocalDate dayOfBirth = actual.getDayOfBirth();
+        LocalDate dayOfBirth = actual.getBirthDay();
         LocalDate today = LocalDate.now();
 
         Period until = dayOfBirth.until(today);
