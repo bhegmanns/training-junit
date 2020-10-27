@@ -23,6 +23,8 @@ public class CustomerWithAssertJAssertTest {
 
         AllAssertions.assertThat(anyCustomer).hasAge(53).hasFirstName("Bernd").hasLastName("Hegmanns");
 
+
+
         AllAssertions.assertThat("hello").hasSize(5);
     }
 }

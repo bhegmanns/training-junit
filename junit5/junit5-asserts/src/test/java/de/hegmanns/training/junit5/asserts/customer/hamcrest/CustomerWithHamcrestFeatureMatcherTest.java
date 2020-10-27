@@ -15,6 +15,9 @@ public class CustomerWithHamcrestFeatureMatcherTest {
 
         Customer anyCustomer = new Customer("Bernd", "Hegmanns", LocalDate.of(1967, 6, 19));
 
+        MatcherAssert.assertThat(anyCustomer, CustomerFeatureMatcher.age(Matchers.is(53)));
+
+
         Assertions.assertAll(
                 () -> MatcherAssert.assertThat(anyCustomer, CustomerFeatureMatcher.age(Matchers.is(53))),
                 () -> MatcherAssert.assertThat(anyCustomer, CustomerFeatureMatcher.age(Matchers.lessThan(60))),

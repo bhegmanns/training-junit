@@ -10,21 +10,41 @@ import java.time.Period;
 
 public class CustomerMatcher extends TypeSafeMatcher<Customer> {
 
+
+
     public static Matcher<Customer> hasAge(int expectedYears) {
         return new CustomerMatcher(expectedYears);
     }
 
-    int expectedYears;
+    public static Matcher<Customer> hasFirstName(String expectedFirstName){return new CustomerMatcher(expectedFirstName);}
+
+    Integer expectedYears;
+    String expectedFirstName;
     public CustomerMatcher(int expectedYears) {
         this.expectedYears = expectedYears;
     }
+
+    public CustomerMatcher(String expectedFirstName){this.expectedFirstName = expectedFirstName;}
+
     @Override
     protected boolean matchesSafely(Customer item) {
-        LocalDate dayOfBirth = item.getBirthDay();
-        LocalDate today = LocalDate.now();
+        if (expectedYears!=null) {
+            LocalDate dayOfBirth = item.getBirthDay();
+            LocalDate today = LocalDate.now();
 
-        Period until = dayOfBirth.until(today);
-        return until.getYears() == expectedYears;
+            Period until = dayOfBirth.until(today);
+            return until.getYears() == expectedYears;
+        }
+        if (expectedFirstName != null) {
+            return item.getFirstName().toLowerCase().equals(expectedFirstName.toLowerCase());
+        }
+
+        return true;
+    }
+
+    @Override
+    protected void describeMismatchSafely(Customer item, Description mismatchDescription) {
+        super.describeMismatchSafely(item, mismatchDescription);
     }
 
     @Override

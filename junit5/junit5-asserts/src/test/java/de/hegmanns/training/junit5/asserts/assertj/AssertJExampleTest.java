@@ -1,5 +1,6 @@
 package de.hegmanns.training.junit5.asserts.assertj;
 
+import de.hegmanns.training.junit5.asserts.customer.Customer;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.Condition;
 import org.assertj.core.api.StringAssert;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.*;
 
 public class AssertJExampleTest {
@@ -106,6 +108,8 @@ public class AssertJExampleTest {
         Assertions.assertThat(stringList).doesNotContainSequence("String", "any", "to", "put", "in", "the", "set");
         Assertions.assertThat(stringList).contains("String", "any", "to", "put", "in", "the", "set");
 
+
+
         Assertions.assertThat(stringList).contains("to");
         Assertions.assertThat(stringList).contains("put", "set");
         Assertions.assertThat(stringList).contains("set", "put");
@@ -147,6 +151,7 @@ public class AssertJExampleTest {
         Assertions.assertThat(strings).doesNotContain("heroes");
         Assertions.assertThat(strings).containsExactly("any", "String", "to", "put", "in", "the", "array");
     }
+
 
 
 }

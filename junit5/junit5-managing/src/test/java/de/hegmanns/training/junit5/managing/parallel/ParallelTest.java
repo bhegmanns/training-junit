@@ -1,8 +1,14 @@
 package de.hegmanns.training.junit5.managing.parallel;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.junit.jupiter.api.parallel.ResourceAccessMode;
+import org.junit.jupiter.api.parallel.ResourceLock;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Execution(ExecutionMode.CONCURRENT)
 public class ParallelTest {
@@ -37,4 +43,5 @@ public class ParallelTest {
             e.printStackTrace();
         }
     }
+
 }

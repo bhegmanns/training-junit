@@ -4,6 +4,7 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -18,6 +19,7 @@ public class GreetService03Test {
 
     @InjectMocks
     GreetService03 greetService;
+
 
     @Test
     public void sixHourResultsInGoodMorning_handling01() {
@@ -43,8 +45,5 @@ public class GreetService03Test {
             try{Thread.sleep(2000);}catch(Exception e){}
             return hour;
         });
-
-
-//        Mockito.when(hourProvider.getCurrentHour()).thenReturn(hour);
     }
 }

@@ -1,5 +1,6 @@
 package de.hegmanns.training.junit5.managing.testreporterinfo;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestReporter;
@@ -20,7 +21,9 @@ public class TestWithTestReporterTest {
 
     @Test
     public void withReporterAndInfo(TestReporter testReporter, TestInfo testInfo) {
+
         printOut(testReporter, testInfo);
+        Assertions.fail(testInfo.getTestMethod() + "....");
     }
 
 

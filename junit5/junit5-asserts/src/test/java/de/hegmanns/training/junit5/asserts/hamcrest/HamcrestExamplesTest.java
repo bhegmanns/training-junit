@@ -144,6 +144,7 @@ public class HamcrestExamplesTest {
 
     @Test
     public void everytime() {
+//        MatcherAssert.assertThat(null, );
         MatcherAssert.assertThat(null, Matchers.anything());
         MatcherAssert.assertThat(null, Matchers.anything("..."));
     }

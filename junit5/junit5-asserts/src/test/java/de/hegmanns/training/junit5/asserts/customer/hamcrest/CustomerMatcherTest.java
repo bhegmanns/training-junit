@@ -14,6 +14,7 @@ public class CustomerMatcherTest {
         Customer anyCustomer = new Customer("Bernd", "Hegmanns", LocalDate.of(1967, 6, 19));
 
         MatcherAssert.assertThat(anyCustomer, CustomerMatcher.hasAge(53));
+        MatcherAssert.assertThat(anyCustomer, CustomerMatcher.hasFirstName("willi"));
 
     }
 }
