@@ -14,7 +14,7 @@
     <properties>
         <exec.version>3.0.0</exec.version>
         <jvm.options>-Xmx256M</jvm.options>
-        <puzzle001>de.hegmanns.training.junit5.breakpuzzles.break001.LoveWithStringApp</puzzle001>
+        <puzzle001>de.hegmanns.training.junit5.extension.training.junit5.breakpuzzles.break001.LoveWithStringApp</puzzle001>
     </properties>
 
     <dependencies>

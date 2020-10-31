@@ -1,1 +1,0 @@
-package de.hegmanns.training.junit5.practice.task15;
