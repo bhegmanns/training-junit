@@ -48,12 +48,12 @@ import java.math.BigDecimal;
 public class ExchangeConverterTest {
 
     @Test
-    public void gleicheZielwaehrungUndAusgangswaehrungErgibtGleichenBetrag() {
+    public void equalStartAndTargetCurrencyResultIntoEqualAmount() {
         BigDecimal betrag = BigDecimal.TEN;
         String gleicheWaehrungssymbol = "EUR";
 
         ExchangeRateProvider provider = Mockito.mock(ExchangeRateProvider.class);
-        aktuellerKurs100(provider);
+        currentRate100(provider);
         ExchangeConverter.provider = provider;
 
         BigDecimal umgerechneterBetrag = ExchangeConverter.convert(betrag, gleicheWaehrungssymbol, gleicheWaehrungssymbol);
@@ -64,7 +64,7 @@ public class ExchangeConverterTest {
     }
 
     @Test
-    public void betrag0FuehrtZuBetrag0() {
+    public void amountZeroResultsInAmountZero() {
         String ausgangswaehrungsSymbol = "EUR";
         String zielwaehrungsSymbol = "USD";
 
@@ -74,42 +74,42 @@ public class ExchangeConverterTest {
     }
 
     @Test
-    public void betragIstNullErzeugtException() {
+    public void amountNullResultsInException() {
         Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.convert(null, "EUR", "EUR"));
     }
 
     @Test
-    public void negaBetragErzeugtException() {
+    public void negativeAmountResultsInException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.convert(BigDecimal.ONE.negate(), "EUR", "EUR"));
     }
 
     @Test
-    public void eingangswaehrungIstNullErzeugtException() {
+    public void startCurrencyNullResultsInException() {
         Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.convert(BigDecimal.ONE, null, "EUR"));
     }
 
     @Test
-    public void ausgangswaehrungIstNullErzeugtException() {
+    public void targetCurrencyNullResultsInException() {
         Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.convert(BigDecimal.ONE, "EUR", null));
     }
 
     @Test
-    public void waherungssystemKleiner3StellenErzeugtException() {
+    public void startCurrencyLessThenThreeCharacterResultsInException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.convert(BigDecimal.ONE.negate(), "EU", "EUR"));
     }
 
     @Test
-    public void waherungssystemGroesser3StellenErzeugtException() {
+    public void targetCurrencyMoreThanThreeCharacterResultsInException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.convert(BigDecimal.ONE.negate(), "EUR", "EURO"));
     }
 
     @Test
-    public void waehrungssymboleUngleich3StellenErzeugtException() {
+    public void startCurrencyLessThenThresseAndTargetCurrencyMoreThanThreeCharacterResultsInException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.convert(BigDecimal.ONE.negate(), "EU", "EURO"));
     }
 
     @Test
-    public void waehrungsrechnerRechnetEinEurRichtigInDollar() {
+    public void currencyConverterWorkCurrectForUSD() {
         BigDecimal betrag = BigDecimal.ONE;
         String ausgangswaehrung = "EUR";
         String zielwaehrung = "USD";
@@ -127,7 +127,7 @@ public class ExchangeConverterTest {
 //      (4) Mock verwenden um definiertes Verhalten zu erzwingen
 
         ExchangeRateProvider provider = Mockito.mock(ExchangeRateProvider.class);
-        aktuellerKurs100(provider);
+        currentRate100(provider);
 
 //        TestMOckFactory.getProviderFuerKurs(100);
         ExchangeConverter.provider = provider;
@@ -143,16 +143,8 @@ public class ExchangeConverterTest {
         Mockito.verify(provider, Mockito.times(1)).getExchangeRateForEuro("USD");
     }
 
-    private void aktuellerKurs100(ExchangeRateProvider provider) {
+    private void currentRate100(ExchangeRateProvider provider) {
         Mockito.when(provider.getExchangeRateForEuro("USD")).thenReturn(new BigDecimal("100"));
     }
 
-//    @Test
-//    public void nichtValideWaehrungFuehrtZurException() {
-//        BigDecimal anybetrag = BigDecimal.TEN;
-//        String gleicheWaehrungssymbol = "ANY";
-//
-//        Waehrungstechner.umrechnen(anybetrag, gleicheWaehrungssymbol, gleicheWaehrungssymbol);
-//
-//    }
 }
