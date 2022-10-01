@@ -56,11 +56,11 @@ public class ExchangeConverterTest {
         aktuellerKurs100(provider);
         ExchangeConverter.provider = provider;
 
-        BigDecimal umgerechneterBetrag = ExchangeConverter.umrechnen(betrag, gleicheWaehrungssymbol, gleicheWaehrungssymbol);
+        BigDecimal umgerechneterBetrag = ExchangeConverter.convert(betrag, gleicheWaehrungssymbol, gleicheWaehrungssymbol);
 
         MatcherAssert.assertThat(umgerechneterBetrag, Matchers.comparesEqualTo(betrag));
 
-        Mockito.verify(provider, Mockito.never()).getDevisenkursFuerEuro(Mockito.anyString());
+        Mockito.verify(provider, Mockito.never()).getExchangeRateForEuro(Mockito.anyString());
     }
 
     @Test
@@ -68,44 +68,44 @@ public class ExchangeConverterTest {
         String ausgangswaehrungsSymbol = "EUR";
         String zielwaehrungsSymbol = "USD";
 
-        BigDecimal umgerechneterBetrag = ExchangeConverter.umrechnen(BigDecimal.ZERO, ausgangswaehrungsSymbol, zielwaehrungsSymbol);
+        BigDecimal umgerechneterBetrag = ExchangeConverter.convert(BigDecimal.ZERO, ausgangswaehrungsSymbol, zielwaehrungsSymbol);
 
         MatcherAssert.assertThat(umgerechneterBetrag, Matchers.comparesEqualTo(BigDecimal.ZERO));
     }
 
     @Test
     public void betragIstNullErzeugtException() {
-        Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.umrechnen(null, "EUR", "EUR"));
+        Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.convert(null, "EUR", "EUR"));
     }
 
     @Test
     public void negaBetragErzeugtException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE.negate(), "EUR", "EUR"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.convert(BigDecimal.ONE.negate(), "EUR", "EUR"));
     }
 
     @Test
     public void eingangswaehrungIstNullErzeugtException() {
-        Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE, null, "EUR"));
+        Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.convert(BigDecimal.ONE, null, "EUR"));
     }
 
     @Test
     public void ausgangswaehrungIstNullErzeugtException() {
-        Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE, "EUR", null));
+        Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.convert(BigDecimal.ONE, "EUR", null));
     }
 
     @Test
     public void waherungssystemKleiner3StellenErzeugtException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE.negate(), "EU", "EUR"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.convert(BigDecimal.ONE.negate(), "EU", "EUR"));
     }
 
     @Test
     public void waherungssystemGroesser3StellenErzeugtException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE.negate(), "EUR", "EURO"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.convert(BigDecimal.ONE.negate(), "EUR", "EURO"));
     }
 
     @Test
     public void waehrungssymboleUngleich3StellenErzeugtException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE.negate(), "EU", "EURO"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.convert(BigDecimal.ONE.negate(), "EU", "EURO"));
     }
 
     @Test
@@ -137,14 +137,14 @@ public class ExchangeConverterTest {
 //        rechner.umrechnen();
 //        Mockito.verify(rechner).umrechnen();
 
-        BigDecimal umgerechneterWert = ExchangeConverter.umrechnen(betrag, ausgangswaehrung, zielwaehrung);
+        BigDecimal umgerechneterWert = ExchangeConverter.convert(betrag, ausgangswaehrung, zielwaehrung);
         MatcherAssert.assertThat(umgerechneterWert, Matchers.comparesEqualTo(erwarteterBetrag));
 
-        Mockito.verify(provider, Mockito.times(1)).getDevisenkursFuerEuro("USD");
+        Mockito.verify(provider, Mockito.times(1)).getExchangeRateForEuro("USD");
     }
 
     private void aktuellerKurs100(ExchangeRateProvider provider) {
-        Mockito.when(provider.getDevisenkursFuerEuro("USD")).thenReturn(new BigDecimal("100"));
+        Mockito.when(provider.getExchangeRateForEuro("USD")).thenReturn(new BigDecimal("100"));
     }
 
 //    @Test

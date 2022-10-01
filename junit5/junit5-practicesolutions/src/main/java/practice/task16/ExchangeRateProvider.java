@@ -4,5 +4,5 @@ import java.math.BigDecimal;
 
 public interface ExchangeRateProvider {
 
-    BigDecimal getDevisenkursFuerEuro(String waehrung);
+    BigDecimal getExchangeRateForEuro(String currency);
 }
