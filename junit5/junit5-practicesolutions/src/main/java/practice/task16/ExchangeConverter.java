@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 public class ExchangeConverter {
 
     public static ExchangeRateProvider provider;
-    public static BigDecimal umrechnen(BigDecimal betrag, String ausgangwaehrung, String zielwaehrung) {
+    public static BigDecimal convert(BigDecimal betrag, String ausgangwaehrung, String zielwaehrung) {
         checkInputs(betrag, ausgangwaehrung, zielwaehrung);
-        if (rechnungOhneDevisenkursProviderMoeglich(betrag, ausgangwaehrung, zielwaehrung)) {
+        if (convertWithoutExchangeRateProviderPossible(betrag, ausgangwaehrung, zielwaehrung)) {
             if (betrag.compareTo(BigDecimal.ZERO) == 0) {
                 return BigDecimal.ZERO;
             } else {
@@ -18,11 +18,11 @@ public class ExchangeConverter {
         }
 
 
-        BigDecimal devisenkursFuerEuro = provider.getDevisenkursFuerEuro(zielwaehrung);
+        BigDecimal devisenkursFuerEuro = provider.getExchangeRateForEuro(zielwaehrung);
         return betrag.multiply(devisenkursFuerEuro);
     }
 
-    private static boolean rechnungOhneDevisenkursProviderMoeglich(BigDecimal betrag, String ausgangswaehrung, String zielwaehrung) {
+    private static boolean convertWithoutExchangeRateProviderPossible(BigDecimal betrag, String ausgangswaehrung, String zielwaehrung) {
         return betrag.compareTo(BigDecimal.ZERO) == 0 || ausgangswaehrung.equals(zielwaehrung);
     }
 
