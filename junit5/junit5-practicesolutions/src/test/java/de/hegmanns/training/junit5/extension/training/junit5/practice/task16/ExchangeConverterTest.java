@@ -11,66 +11,66 @@ import practice.task16.ExchangeConverter;
 import java.math.BigDecimal;
 
 /**
- * Währungsrechner:
+ * Currency Converter:
  *
- * 	Input > Betrag + Währung (Ausgangswährung)
- * 	Input > Währung (Zielwährung)
+ * 	Input > Amount + currency (start currency)
+ * 	Input > currency (target currency)
  *
- * 	Output > Betrag (in Zielwährung)
+ * 	Output > amount (in target currency)
  *
- * 	Ausgangsbasis: Eingabe "echte" Zahl (muss also nicht mehr konvertiert werden)
+ * 	Ausgangsbasis: enter "correct" amount (muss also nicht mehr konvertiert werden)
  * 	                                    (ist bereits Qualitätsgesichert
  * 										(lässt auch nur positive icl. 0 Werte zu))
  * 				   Maximum:
  * 	10Mio			   Minimum: 0
  *
- * 				   Eingabe Währung: Currency
+ * 				   enter currency: Currency
  *
- * mögliche
+ * possibile
  * Steps:
- *  (1) Wenn Ausgangswährung = Zielwährung dann Eingangsbetrag = Umrechnungsbetrag
- *  - Wenn Betrag exakt 0 dann Ausgangsbetrag exakt 0
+ *  (1) if start currency = target currency then start amount = target amount (without calculation)
+ *  - if amount is exact 0 then target amount is 0
  *
- *  - Betrag als null
- *  - Betrag negativ
+ *  - amount a null
+ *  - amount negative
  *
- *  - Symbol(e) sind null
- *  - Symbol(e) != 3 Stellen
+ *  - symbol(s) are null
+ *  - symbol(s) != 3 char
  *
- *  - 1000EUR >>> 500USD ; 1000EUR >> 500USD  >>> Vorzeichen ist immer positiv
+ *  - 1000EUR >>> 500USD ; 1000EUR >> 500USD  >>> signs is always positive
  *
- *  - Höchstbeträge?
- *    1Mio >>> 1000000 ist möglich
+ *  - max amounts?
+ *    1Mio >>> 1000000 is possible
  *
- *  - Umrechnung muss passen
+ *  - calculation must fit
  *    1EUR >>> 1,19 USD (21.10.2020)
  */
 public class ExchangeConverterTest {
 
     @Test
     public void equalStartAndTargetCurrencyResultIntoEqualAmount() {
-        BigDecimal betrag = BigDecimal.TEN;
-        String gleicheWaehrungssymbol = "EUR";
+        BigDecimal amount = BigDecimal.TEN;
+        String equalCurrencySymbol = "EUR";
 
         ExchangeRateProvider provider = Mockito.mock(ExchangeRateProvider.class);
         currentRate100(provider);
         ExchangeConverter.provider = provider;
 
-        BigDecimal umgerechneterBetrag = ExchangeConverter.convert(betrag, gleicheWaehrungssymbol, gleicheWaehrungssymbol);
+        BigDecimal gotAmount = ExchangeConverter.convert(amount, equalCurrencySymbol, equalCurrencySymbol);
 
-        MatcherAssert.assertThat(umgerechneterBetrag, Matchers.comparesEqualTo(betrag));
+        MatcherAssert.assertThat(gotAmount, Matchers.comparesEqualTo(amount));
 
         Mockito.verify(provider, Mockito.never()).getExchangeRateForEuro(Mockito.anyString());
     }
 
     @Test
     public void amountZeroResultsInAmountZero() {
-        String ausgangswaehrungsSymbol = "EUR";
-        String zielwaehrungsSymbol = "USD";
+        String anyStartCurrencySymbol = "EUR";
+        String anyTargetCurrencySymbol = "USD";
 
-        BigDecimal umgerechneterBetrag = ExchangeConverter.convert(BigDecimal.ZERO, ausgangswaehrungsSymbol, zielwaehrungsSymbol);
+        BigDecimal gotAmount = ExchangeConverter.convert(BigDecimal.ZERO, anyStartCurrencySymbol, anyTargetCurrencySymbol);
 
-        MatcherAssert.assertThat(umgerechneterBetrag, Matchers.comparesEqualTo(BigDecimal.ZERO));
+        MatcherAssert.assertThat(gotAmount, Matchers.comparesEqualTo(BigDecimal.ZERO));
     }
 
     @Test
@@ -110,35 +110,28 @@ public class ExchangeConverterTest {
 
     @Test
     public void currencyConverterWorkCurrectForUSD() {
-        BigDecimal betrag = BigDecimal.ONE;
-        String ausgangswaehrung = "EUR";
-        String zielwaehrung = "USD";
-        BigDecimal erwarteterBetrag = new BigDecimal("100");
+        BigDecimal amount = BigDecimal.ONE;
+        String startCurrencySymbol = "EUR";
+        String targetCurrencySymbol = "USD";
+        BigDecimal expectedAmount = new BigDecimal("100");
 
 //      (1)  Assumptions für 21.10.2020 :(
 
-//      (2) Verbindung zur DB und Holen des aktuelles Kurses und Berechnen: 1 * Kurs
-//        :(, weil zu viel Logik, die im Zweifel im Waehrungsrechnet genau so verwendet wird
+//      (2) connect to DB und fetch des current rate und calculate: 1 * rate
+//        :(,
 
-//      (3) Verbindung zur DB, und insert/update für USD >> 10
-//            Dann ohne berechnung erwartetes Ergebnis = 10
-//        :|
+//      (3) connection to DB, and insert/update für USD >> 10
+//            then without calculation expected result = 10
 
-//      (4) Mock verwenden um definiertes Verhalten zu erzwingen
+//      (4) use mock to enforce expected behave
 
         ExchangeRateProvider provider = Mockito.mock(ExchangeRateProvider.class);
         currentRate100(provider);
 
-//        TestMOckFactory.getProviderFuerKurs(100);
         ExchangeConverter.provider = provider;
 
-//        Waehrungsrechner rechner = new Waehrungsrechner();
-//        rechner = Mockito.spy(rechner);
-//        rechner.umrechnen();
-//        Mockito.verify(rechner).umrechnen();
-
-        BigDecimal umgerechneterWert = ExchangeConverter.convert(betrag, ausgangswaehrung, zielwaehrung);
-        MatcherAssert.assertThat(umgerechneterWert, Matchers.comparesEqualTo(erwarteterBetrag));
+        BigDecimal gotAmount = ExchangeConverter.convert(amount, startCurrencySymbol, targetCurrencySymbol);
+        MatcherAssert.assertThat(gotAmount, Matchers.comparesEqualTo(expectedAmount));
 
         Mockito.verify(provider, Mockito.times(1)).getExchangeRateForEuro("USD");
     }
