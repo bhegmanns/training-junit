@@ -5,35 +5,35 @@ import java.math.BigDecimal;
 public class ExchangeConverter {
 
     public static ExchangeRateProvider provider;
-    public static BigDecimal convert(BigDecimal betrag, String ausgangwaehrung, String zielwaehrung) {
-        checkInputs(betrag, ausgangwaehrung, zielwaehrung);
-        if (convertWithoutExchangeRateProviderPossible(betrag, ausgangwaehrung, zielwaehrung)) {
-            if (betrag.compareTo(BigDecimal.ZERO) == 0) {
+    public static BigDecimal convert(BigDecimal amount, String startCurrency, String targetCurrency) {
+        checkInputs(amount, startCurrency, targetCurrency);
+        if (convertWithoutExchangeRateProviderPossible(amount, startCurrency, targetCurrency)) {
+            if (amount.compareTo(BigDecimal.ZERO) == 0) {
                 return BigDecimal.ZERO;
             } else {
-                if (ausgangwaehrung.equals(zielwaehrung)) {
-                    return betrag;
+                if (startCurrency.equals(targetCurrency)) {
+                    return amount;
                 }
             }
         }
 
 
-        BigDecimal devisenkursFuerEuro = provider.getExchangeRateForEuro(zielwaehrung);
-        return betrag.multiply(devisenkursFuerEuro);
+        BigDecimal exchangeRateForEuro = provider.getExchangeRateForEuro(targetCurrency);
+        return amount.multiply(exchangeRateForEuro);
     }
 
-    private static boolean convertWithoutExchangeRateProviderPossible(BigDecimal betrag, String ausgangswaehrung, String zielwaehrung) {
-        return betrag.compareTo(BigDecimal.ZERO) == 0 || ausgangswaehrung.equals(zielwaehrung);
+    private static boolean convertWithoutExchangeRateProviderPossible(BigDecimal amount, String startCurrency, String targetCurrency) {
+        return amount.compareTo(BigDecimal.ZERO) == 0 || startCurrency.equals(targetCurrency);
     }
 
-    private static void checkInputs(BigDecimal betrag, String ausgangwaehrung, String zielwaehrung) {
-        if (betrag == null || ausgangwaehrung ==null || zielwaehrung ==null) {
+    private static void checkInputs(BigDecimal amount, String startCurrency, String targetCurrency) {
+        if (amount == null || startCurrency ==null || targetCurrency ==null) {
             throw new NullPointerException("betrag is null");
         }
-        if (betrag.compareTo(BigDecimal.ZERO) <0) {
+        if (amount.compareTo(BigDecimal.ZERO) <0) {
             throw new IllegalArgumentException("betrag is lower than 0");
         }
-        if (ausgangwaehrung.length() != 3 || zielwaehrung.length() != 3) {
+        if (startCurrency.length() != 3 || targetCurrency.length() != 3) {
             throw new IllegalArgumentException("ungueltiges Waehrungssymbol");
         }
     }
