@@ -2,9 +2,9 @@ package practice.task16;
 
 import java.math.BigDecimal;
 
-public class Waehrungsrechner {
+public class ExchangeConverter {
 
-    public static DevisenkursProvider provider;
+    public static ExchangeRateProvider provider;
     public static BigDecimal umrechnen(BigDecimal betrag, String ausgangwaehrung, String zielwaehrung) {
         checkInputs(betrag, ausgangwaehrung, zielwaehrung);
         if (rechnungOhneDevisenkursProviderMoeglich(betrag, ausgangwaehrung, zielwaehrung)) {
