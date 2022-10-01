@@ -5,8 +5,8 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import practice.task16.DevisenkursProvider;
-import practice.task16.Waehrungsrechner;
+import practice.task16.ExchangeRateProvider;
+import practice.task16.ExchangeConverter;
 
 import java.math.BigDecimal;
 
@@ -45,18 +45,18 @@ import java.math.BigDecimal;
  *  - Umrechnung muss passen
  *    1EUR >>> 1,19 USD (21.10.2020)
  */
-public class WaehrungsrechnerTest {
+public class ExchangeConverterTest {
 
     @Test
     public void gleicheZielwaehrungUndAusgangswaehrungErgibtGleichenBetrag() {
         BigDecimal betrag = BigDecimal.TEN;
         String gleicheWaehrungssymbol = "EUR";
 
-        DevisenkursProvider provider = Mockito.mock(DevisenkursProvider.class);
+        ExchangeRateProvider provider = Mockito.mock(ExchangeRateProvider.class);
         aktuellerKurs100(provider);
-        Waehrungsrechner.provider = provider;
+        ExchangeConverter.provider = provider;
 
-        BigDecimal umgerechneterBetrag = Waehrungsrechner.umrechnen(betrag, gleicheWaehrungssymbol, gleicheWaehrungssymbol);
+        BigDecimal umgerechneterBetrag = ExchangeConverter.umrechnen(betrag, gleicheWaehrungssymbol, gleicheWaehrungssymbol);
 
         MatcherAssert.assertThat(umgerechneterBetrag, Matchers.comparesEqualTo(betrag));
 
@@ -68,44 +68,44 @@ public class WaehrungsrechnerTest {
         String ausgangswaehrungsSymbol = "EUR";
         String zielwaehrungsSymbol = "USD";
 
-        BigDecimal umgerechneterBetrag = Waehrungsrechner.umrechnen(BigDecimal.ZERO, ausgangswaehrungsSymbol, zielwaehrungsSymbol);
+        BigDecimal umgerechneterBetrag = ExchangeConverter.umrechnen(BigDecimal.ZERO, ausgangswaehrungsSymbol, zielwaehrungsSymbol);
 
         MatcherAssert.assertThat(umgerechneterBetrag, Matchers.comparesEqualTo(BigDecimal.ZERO));
     }
 
     @Test
     public void betragIstNullErzeugtException() {
-        Assertions.assertThrows(NullPointerException.class, () -> Waehrungsrechner.umrechnen(null, "EUR", "EUR"));
+        Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.umrechnen(null, "EUR", "EUR"));
     }
 
     @Test
     public void negaBetragErzeugtException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> Waehrungsrechner.umrechnen(BigDecimal.ONE.negate(), "EUR", "EUR"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE.negate(), "EUR", "EUR"));
     }
 
     @Test
     public void eingangswaehrungIstNullErzeugtException() {
-        Assertions.assertThrows(NullPointerException.class, () -> Waehrungsrechner.umrechnen(BigDecimal.ONE, null, "EUR"));
+        Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE, null, "EUR"));
     }
 
     @Test
     public void ausgangswaehrungIstNullErzeugtException() {
-        Assertions.assertThrows(NullPointerException.class, () -> Waehrungsrechner.umrechnen(BigDecimal.ONE, "EUR", null));
+        Assertions.assertThrows(NullPointerException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE, "EUR", null));
     }
 
     @Test
     public void waherungssystemKleiner3StellenErzeugtException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> Waehrungsrechner.umrechnen(BigDecimal.ONE.negate(), "EU", "EUR"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE.negate(), "EU", "EUR"));
     }
 
     @Test
     public void waherungssystemGroesser3StellenErzeugtException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> Waehrungsrechner.umrechnen(BigDecimal.ONE.negate(), "EUR", "EURO"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE.negate(), "EUR", "EURO"));
     }
 
     @Test
     public void waehrungssymboleUngleich3StellenErzeugtException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> Waehrungsrechner.umrechnen(BigDecimal.ONE.negate(), "EU", "EURO"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ExchangeConverter.umrechnen(BigDecimal.ONE.negate(), "EU", "EURO"));
     }
 
     @Test
@@ -126,24 +126,24 @@ public class WaehrungsrechnerTest {
 
 //      (4) Mock verwenden um definiertes Verhalten zu erzwingen
 
-        DevisenkursProvider provider = Mockito.mock(DevisenkursProvider.class);
+        ExchangeRateProvider provider = Mockito.mock(ExchangeRateProvider.class);
         aktuellerKurs100(provider);
 
 //        TestMOckFactory.getProviderFuerKurs(100);
-        Waehrungsrechner.provider = provider;
+        ExchangeConverter.provider = provider;
 
 //        Waehrungsrechner rechner = new Waehrungsrechner();
 //        rechner = Mockito.spy(rechner);
 //        rechner.umrechnen();
 //        Mockito.verify(rechner).umrechnen();
 
-        BigDecimal umgerechneterWert = Waehrungsrechner.umrechnen(betrag, ausgangswaehrung, zielwaehrung);
+        BigDecimal umgerechneterWert = ExchangeConverter.umrechnen(betrag, ausgangswaehrung, zielwaehrung);
         MatcherAssert.assertThat(umgerechneterWert, Matchers.comparesEqualTo(erwarteterBetrag));
 
         Mockito.verify(provider, Mockito.times(1)).getDevisenkursFuerEuro("USD");
     }
 
-    private void aktuellerKurs100(DevisenkursProvider provider) {
+    private void aktuellerKurs100(ExchangeRateProvider provider) {
         Mockito.when(provider.getDevisenkursFuerEuro("USD")).thenReturn(new BigDecimal("100"));
     }
 
