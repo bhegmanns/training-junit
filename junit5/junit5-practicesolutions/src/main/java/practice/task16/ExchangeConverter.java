@@ -28,13 +28,13 @@ public class ExchangeConverter {
 
     private static void checkInputs(BigDecimal amount, String startCurrency, String targetCurrency) {
         if (amount == null || startCurrency ==null || targetCurrency ==null) {
-            throw new NullPointerException("betrag is null");
+            throw new NullPointerException("amount is null");
         }
         if (amount.compareTo(BigDecimal.ZERO) <0) {
-            throw new IllegalArgumentException("betrag is lower than 0");
+            throw new IllegalArgumentException("amount is lower than 0");
         }
         if (startCurrency.length() != 3 || targetCurrency.length() != 3) {
-            throw new IllegalArgumentException("ungueltiges Waehrungssymbol");
+            throw new IllegalArgumentException("invalid currency symbol");
         }
     }
 }
