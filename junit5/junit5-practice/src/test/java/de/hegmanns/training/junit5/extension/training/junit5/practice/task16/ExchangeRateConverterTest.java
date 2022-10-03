@@ -15,14 +15,14 @@ public class ExchangeRateConverterTest {
 
     @Test
     public void amountZeroResultsInAmountZero() {
-        String anyAusgangswaehrung = "EUR";
-        String anyZielwaehrung = "USD";
+        String anyStartCurrency = "EUR";
+        String anyTargetCurrency = "USD";
 
-        BigDecimal umgerechneterWert = ExchangeRateConverter.convert(BigDecimal.ZERO, anyAusgangswaehrung,
-                anyZielwaehrung);
+        BigDecimal umgerechneterWert = ExchangeRateConverter.convert(BigDecimal.ZERO, anyStartCurrency,
+                anyTargetCurrency);
         MatcherAssert.assertThat(umgerechneterWert, Matchers.comparesEqualTo(BigDecimal.ZERO));
     }
 
-    //(2) Betrag egal, Eingangswährung==Ausgangswährung >>> Umrechnungsbetrag = Betrag (ggf. same)
+    //(2) ... Betrag egal, Eingangswährung==Ausgangswährung >>> Umrechnungsbetrag = Betrag (ggf. same)
 
 }
