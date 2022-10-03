@@ -11,14 +11,14 @@ import java.math.BigDecimal;
  *
 
  */
-public class WaehrungsrechnerTest {
+public class ExchangeRateConverterTest {
 
     @Test
     public void betrag0FuehrtZuBetrag0() {
         String anyAusgangswaehrung = "EUR";
         String anyZielwaehrung = "USD";
 
-        BigDecimal umgerechneterWert = Waehrungsrechner.umrechnen(BigDecimal.ZERO, anyAusgangswaehrung,
+        BigDecimal umgerechneterWert = ExchangeRateConverter.umrechnen(BigDecimal.ZERO, anyAusgangswaehrung,
                 anyZielwaehrung);
         MatcherAssert.assertThat(umgerechneterWert, Matchers.comparesEqualTo(BigDecimal.ZERO));
     }
