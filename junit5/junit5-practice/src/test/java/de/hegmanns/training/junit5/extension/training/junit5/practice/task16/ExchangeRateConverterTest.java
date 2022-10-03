@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 public class ExchangeRateConverterTest {
 
     @Test
-    public void betrag0FuehrtZuBetrag0() {
+    public void amountZeroResultsInAmountZero() {
         String anyAusgangswaehrung = "EUR";
         String anyZielwaehrung = "USD";
 
-        BigDecimal umgerechneterWert = ExchangeRateConverter.umrechnen(BigDecimal.ZERO, anyAusgangswaehrung,
+        BigDecimal umgerechneterWert = ExchangeRateConverter.convert(BigDecimal.ZERO, anyAusgangswaehrung,
                 anyZielwaehrung);
         MatcherAssert.assertThat(umgerechneterWert, Matchers.comparesEqualTo(BigDecimal.ZERO));
     }
