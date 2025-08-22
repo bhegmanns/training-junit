@@ -31,6 +31,7 @@ public class WireMockTest {
     @AfterAll
     public static void afterAll() {
         wireMockServer.stop();
+
     }
 
     @Test
